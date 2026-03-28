@@ -8,6 +8,8 @@ Search your GitHub starred repositories — from the terminal, an interactive TU
 
 ## TUI mode
 
+![TUI demo](rags-tui.png)
+
 An interactive terminal experience driven entirely by arrow keys. Navigate a menu to search repos, browse by language, sort by stars/name/updated, view repo details, and open in browser — all without leaving the terminal.
 
 ## GUI mode
