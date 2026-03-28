@@ -21,8 +21,12 @@ def _get_repos(force: bool = False) -> list[dict]:
             )
             raise SystemExit(1)
 
-        with console.status("Fetching starred repos from GitHub..."):
-            repos = github.fetch_starred(token)
+        console.print("Fetching starred repos from GitHub...")
+
+        def on_page(page: int, total: int) -> None:
+            console.print(f"  page {page} — {total} repos so far")
+
+        repos = github.fetch_starred(token, on_page=on_page)
 
         cache.save(repos)
         age = "fresh" if force else "updated"

@@ -1,6 +1,6 @@
 import os
 import subprocess
-from typing import Optional
+from typing import Callable, Optional
 
 import requests
 
@@ -25,7 +25,7 @@ def get_token() -> Optional[str]:
     return None
 
 
-def fetch_starred(token: str) -> list[dict]:
+def fetch_starred(token: str, on_page: Optional[Callable[[int, int], None]] = None) -> list[dict]:
     headers = {
         "Accept": "application/vnd.github.v3+json",
         "Authorization": f"token {token}",
@@ -45,6 +45,8 @@ def fetch_starred(token: str) -> list[dict]:
         if not data:
             break
         repos.extend(data)
+        if on_page:
+            on_page(page, len(repos))
         if len(data) < 100:
             break
         page += 1
