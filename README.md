@@ -61,3 +61,39 @@ rags refresh              # force refresh the local cache
 ```
 
 Stars are cached at `~/.cache/rags-to-riches/stars.json` for 1 hour.
+
+## Code
+
+```
+src/rags/
+├── cli.py        Entry point for all commands (search, refresh, gui, web). Wires
+│                 together the other modules and handles terminal output via Rich.
+├── github.py     GitHub API client. Detects auth tokens (GITHUB_TOKEN env var or
+│                 gh CLI), fetches starred repos with pagination, and accepts a
+│                 callback to report progress per page.
+├── cache.py      Reads and writes the local JSON cache at
+│                 ~/.cache/rags-to-riches/stars.json with a 1-hour TTL.
+├── search.py     Scores and ranks repos against a query string. Matches across
+│                 name, full name, topics, description, and language — exact and
+│                 prefix matches rank higher than substring matches.
+├── gui.py        Native desktop window built with PyQt6. Runs the GitHub fetch in
+│                 a background QThread so the UI stays responsive. Catppuccin Mocha
+│                 colour scheme.
+├── web.py        Flask web server. Exposes /api/repos (JSON) and /api/refresh
+│                 (Server-Sent Events) so the browser receives live fetch progress
+│                 without polling.
+└── templates/
+    └── index.html  Single-page web UI. All filtering and sorting runs client-side
+                    in vanilla JS so results update instantly with no round trips.
+```
+
+## Libraries
+
+| Library | Purpose |
+|---|---|
+| [click](https://click.palletsprojects.com) | CLI commands, options, and argument parsing |
+| [requests](https://docs.python-requests.org) | HTTP calls to the GitHub REST API |
+| [rich](https://github.com/Textualize/rich) | Coloured terminal output and tables for CLI mode |
+| [PyQt6](https://www.riverbankcomputing.com/software/pyqt/) | Native desktop GUI and background threading |
+| [Flask](https://flask.palletsprojects.com) | Web server and Server-Sent Events for the web mode |
+| [uv](https://github.com/astral-sh/uv) | Fast Python package and virtual environment management |
