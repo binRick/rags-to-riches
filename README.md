@@ -6,6 +6,8 @@ Search your GitHub starred repositories — from the terminal, an interactive TU
 
 ![CLI demo](images/rags.png)
 
+A fast command-line interface for searching starred repos by name, description, topic, or language. Results are displayed in a colour-coded table and the top match can be opened directly in your browser.
+
 ## TUI mode
 
 ![TUI demo](images/rags-tui.png)
