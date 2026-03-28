@@ -60,7 +60,7 @@ rags search <query> -r    # refresh cache before searching
 rags refresh              # force refresh the local cache
 ```
 
-Stars are cached at `~/.cache/rags-to-riches/stars.json` for 1 hour.
+Stars are cached at `~/.cache/rags-to-riches/stars.json` for 24 hours.
 
 ## Code
 
@@ -72,7 +72,7 @@ src/rags/
 │                 gh CLI), fetches starred repos with pagination, and accepts a
 │                 callback to report progress per page.
 ├── cache.py      Reads and writes the local JSON cache at
-│                 ~/.cache/rags-to-riches/stars.json with a 1-hour TTL.
+│                 ~/.cache/rags-to-riches/stars.json with a 24-hour TTL.
 ├── search.py     Scores and ranks repos against a query string. Matches across
 │                 name, full name, topics, description, and language — exact and
 │                 prefix matches rank higher than substring matches.

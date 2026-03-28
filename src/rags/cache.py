@@ -5,7 +5,7 @@ from typing import Optional
 
 CACHE_DIR = Path.home() / ".cache" / "rags-to-riches"
 CACHE_FILE = CACHE_DIR / "stars.json"
-TTL = 3600  # 1 hour
+TTL = 86400  # 24 hours
 
 
 def load() -> tuple[Optional[list[dict]], Optional[float]]:
