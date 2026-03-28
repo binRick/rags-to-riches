@@ -76,6 +76,44 @@ rags refresh              # force refresh the local cache
 
 Stars are cached at `~/.cache/rags-to-riches/stars.json` for 24 hours.
 
+## Architecture
+
+```mermaid
+flowchart TD
+    User([User]) --> CLI
+
+    CLI["cli.py\n(click)"]
+
+    CLI -->|rags search| SEARCH[search command]
+    CLI -->|rags tui| TUI[tui command]
+    CLI -->|rags gui| GUI[gui command]
+    CLI -->|rags web| WEB[web command]
+    CLI -->|rags refresh| REFRESH[refresh command]
+
+    SEARCH & TUI & GUI & WEB & REFRESH --> CACHE
+
+    CACHE{"cache.py\n24h TTL\n~/.cache/…/stars.json"}
+
+    CACHE -->|cache miss / force refresh| GITHUB["github.py\n(requests)"]
+    GITHUB -->|paginated GET /user/starred| GHAPI[(GitHub REST API)]
+    GHAPI --> GITHUB
+    GITHUB --> CACHE
+
+    CACHE -->|repos list| SEARCHMOD["search.py\nscored ranking"]
+
+    SEARCHMOD --> SEARCH
+    SEARCHMOD --> TUI
+    SEARCHMOD --> GUI
+    SEARCHMOD --> WEB
+
+    SEARCH -->|Rich table| Terminal([Terminal])
+    TUI -->|questionary menus| Terminal
+    GUI -->|PyQt6 window| Desktop([Desktop window])
+    WEB -->|Flask + SSE| Browser([Browser :5123])
+
+    Terminal & Desktop & Browser -->|open URL| GHWeb[(github.com)]
+```
+
 ## Code
 
 ```
