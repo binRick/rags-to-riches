@@ -85,3 +85,18 @@ def search(query: str, limit: int, open_url: bool, refresh: bool) -> None:
 def refresh() -> None:
     """Force refresh the local stars cache."""
     _get_repos(force=True)
+
+
+@cli.command()
+def gui() -> None:
+    """Open the native GUI."""
+    from .gui import run
+    run()
+
+
+@cli.command()
+@click.option("--port", "-p", default=5123, show_default=True, help="Port to listen on.")
+def web(port: int) -> None:
+    """Open the web app in your browser."""
+    from .web import run
+    run(port=port)

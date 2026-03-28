@@ -12,6 +12,7 @@ dependencies = [
     "urllib3<2",
     "rich>=13.0",
     "PyQt6>=6.4",
+    "flask>=3.0",
 ]
 
 [project.scripts]
