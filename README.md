@@ -1,6 +1,6 @@
 # rags-to-riches
 
-A CLI for searching your GitHub starred repositories — with both a terminal and native GUI mode.
+Search your GitHub starred repositories — from the terminal, a native desktop window, or a local web app.
 
 ## CLI mode
 
