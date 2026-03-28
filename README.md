@@ -4,23 +4,23 @@ Search your GitHub starred repositories — from the terminal, an interactive TU
 
 ## CLI mode
 
-![CLI demo](rags.png)
+![CLI demo](images/rags.png)
 
 ## TUI mode
 
-![TUI demo](rags-tui.png)
+![TUI demo](images/rags-tui.png)
 
 An interactive terminal experience driven entirely by arrow keys. Navigate a menu to search repos, browse by language, sort by stars/name/updated, view repo details, and open in browser — all without leaving the terminal.
 
 ## GUI mode
 
-![GUI demo](rags-gui.png)
+![GUI demo](images/rags-gui.png)
 
 A native macOS window with live search, language filtering, sort controls, and one-click to open any repo in your browser. Fetches in the background with live progress in the status bar.
 
 ## Web mode
 
-![Web demo](rags-webui.png)
+![Web demo](images/rags-webui.png)
 
 A local web app served at `http://localhost:5123`. Same features as the GUI — live search, language filter, sort by stars/name/updated, clickable column headers, and click any row to open the repo. Refresh streams live progress back to the page via SSE.
 
