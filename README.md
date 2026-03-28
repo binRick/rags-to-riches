@@ -1,10 +1,14 @@
 # rags-to-riches
 
-Search your GitHub starred repositories — from the terminal, a native desktop window, or a local web app.
+Search your GitHub starred repositories — from the terminal, an interactive TUI, a native desktop window, or a local web app.
 
 ## CLI mode
 
 ![CLI demo](rags.png)
+
+## TUI mode
+
+An interactive terminal experience driven entirely by arrow keys. Navigate a menu to search repos, browse by language, sort by stars/name/updated, view repo details, and open in browser — all without leaving the terminal.
 
 ## GUI mode
 
@@ -36,6 +40,12 @@ export GITHUB_TOKEN=ghp_...
 Or install the [gh CLI](https://cli.github.com/) and run `gh auth login`.
 
 ## Usage
+
+### TUI
+
+```bash
+rags tui                  # interactive terminal UI (arrow keys + search)
+```
 
 ### GUI
 
@@ -79,6 +89,9 @@ src/rags/
 ├── gui.py        Native desktop window built with PyQt6. Runs the GitHub fetch in
 │                 a background QThread so the UI stays responsive. Catppuccin Mocha
 │                 colour scheme.
+├── tui.py        Interactive terminal UI built with questionary and Rich. Arrow-key
+│                 menus for searching, browsing by language, sorting, viewing repo
+│                 details, and opening repos in the browser.
 ├── web.py        Flask web server. Exposes /api/repos (JSON) and /api/refresh
 │                 (Server-Sent Events) so the browser receives live fetch progress
 │                 without polling.
@@ -96,4 +109,5 @@ src/rags/
 | [rich](https://github.com/Textualize/rich) | Coloured terminal output and tables for CLI mode |
 | [PyQt6](https://www.riverbankcomputing.com/software/pyqt/) | Native desktop GUI and background threading |
 | [Flask](https://flask.palletsprojects.com) | Web server and Server-Sent Events for the web mode |
+| [questionary](https://github.com/tmbo/questionary) | Arrow-key menus and prompts for the TUI mode |
 | [uv](https://github.com/astral-sh/uv) | Fast Python package and virtual environment management |

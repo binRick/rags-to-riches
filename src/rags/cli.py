@@ -88,6 +88,13 @@ def refresh() -> None:
 
 
 @cli.command()
+def tui() -> None:
+    """Interactive terminal UI (arrow keys + search)."""
+    from .tui import run
+    run()
+
+
+@cli.command()
 def gui() -> None:
     """Open the native GUI."""
     from .gui import run
